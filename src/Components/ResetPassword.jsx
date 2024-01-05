@@ -22,7 +22,7 @@ const ResetPassword = () => {
       confirmPassword: "",
     },
     validate: (values) => {
-      const errors = [];
+      const errors = {};
 
       if (!values.password) {
         errors.password = "Password is required";
