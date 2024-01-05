@@ -41,8 +41,8 @@ const ResetPassword = () => {
       try {
         dispatch(setLoading(true));
         const response = await axios.post(
-          `${config.userApi}/reset-password/${params.token}`,
-          values
+        `${config.userApi}/reset-password/${params.token}`,
+        values
         );
         console.log(response);
         navigate("/");

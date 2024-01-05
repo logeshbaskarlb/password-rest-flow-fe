@@ -131,7 +131,7 @@ function ForgetPassword() {
       <div className="">
         <Link
           to="/"
-          className="btn btn-primary m-5 d-flex justify-content-end btn-user btn-block"
+          className="btn btn-primary m-2 d-flex justify-content-end btn-user btn-block"
         >
           Back To Login
         </Link>

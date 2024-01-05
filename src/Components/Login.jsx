@@ -94,7 +94,7 @@ function Login() {
             </p>
           </div>
           <input
-            className={`form-control form-control-user ${
+            className={`form-control form-control-user text-black ${
               formik.touched.email && formik.errors.email
                 ? "is-valid"
                 : ""
