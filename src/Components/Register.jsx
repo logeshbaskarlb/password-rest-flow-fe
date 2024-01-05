@@ -75,19 +75,20 @@ function Register() {
             boxShadow: "5px 20px 50px #000",
           }}
         >
-          <form action="" onSubmit={formik.handleSubmit}>
-            <label
-              htmlFor="chk"
-              aria-hidden="true"
-              style={{
-                color: "#fff",
-                fontSize: "2.3em",
-                justifyContent: "center",
-                display: "flex",
-                fontWeight: "bold",
-                cursor: "pointer",
-              }}
-              className="text-white d-flex"
+          <form action="" 
+          onSubmit={formik.handleSubmit}>
+          <label
+            htmlFor="chk"
+            aria-hidden="true"
+            style={{
+              color: "#fff",
+              fontSize: "2.3em",
+              justifyContent: "center",
+              display: "flex",
+              fontWeight: "bold",
+              cursor: "pointer",
+            }}
+            className="text-white d-flex"
             >
               Sign Up
             </label>
@@ -167,7 +168,7 @@ function Register() {
               value={formik.values.password}
               onBlur={formik.handleBlur}
               required
-            />{" "}
+            />
             <div>
               <div className="showPass">
                 {showPassword ? (
