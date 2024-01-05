@@ -122,7 +122,8 @@ function Register() {
               <span className="d-block mx-5 my-2 text-start text-danger small invalid-feedback">
                 {formik.errors.name}
               </span>
-            ) : null}
+            ) : null
+            }
             <input
               type="email"
               name="email"
@@ -149,6 +150,7 @@ function Register() {
                 {formik.errors.email}
               </span>
             ) : null}
+            {/*  */}
             <input
               name="password"
               style={{
