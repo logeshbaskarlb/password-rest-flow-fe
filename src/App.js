@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import './Components/Login.css';
+import Login from './Components/Login';
+import Register from './Components/Register';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap";
+import ForgetPassword from './Components/ForgetPassword';
+import ResetPassword from './Components/ResetPassword';
+import Dashboard from './Components/Dashboard';
+// import { PrivateRoute } from './Components/Protect/ProtectedRoute';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <>
+      <div className='container-fluid'>
+      <Router>
+      <Routes>
+     <Route path='/' element={ <Login/>}></Route>
+      <Route path='/register' element={<Register/>}/>
+      <Route path='/forgot-password' element ={<ForgetPassword/> }/>
+      <Route path='reset-password/:token' element={<ResetPassword/>}/>
+      {/* <Route element={<PrivateRoute/>}> */}
+           <Route path='/dashboard' element={<Dashboard/>} />
+      {/* </Route> */}
+      </Routes>
+      </Router>
+      </div>
+    </>
   );
 }
-
+//forgot-password
 export default App;
