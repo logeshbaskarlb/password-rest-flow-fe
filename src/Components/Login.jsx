@@ -85,8 +85,7 @@ function Login() {
             aria-hidden="true"
             className="d-flex justify-content-center text-center my-3 mb-1 text-white"
           >
-            <h2 className="mt-3"> Welcome </h2>
-            
+          <h2 className="mt-3"> Welcome </h2>
           </label>
           <div className="d-flex flex-column  w-full h-full">
             <p className="text-center text-white my-2">
