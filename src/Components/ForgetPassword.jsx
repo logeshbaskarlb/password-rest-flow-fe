@@ -55,16 +55,12 @@ function ForgetPassword() {
     <div className="container d-flex justify-content-center align-items-center vh-100">
       <div className="col-md-6 p-4 border rounded shadow">
         <h2 className="mt-3 text-center"> Forgot password </h2>
-        <div className="d-flex flex-column w-full h-full">
-          <p className="text-center text-black my-2">Login to your account</p>
-        </div>
+       
         <div className="d-flex flex-column  w-full h-full">
           <p className="text-center text-black my-0">
             Here you can reset your password
           </p>
-          <p className="text-center text-black my-2">
-            Please enter your mail Id
-          </p>
+
         </div>
         <form action="" className="user" onSubmit={formik.handleSubmit}>
           {formik.errors.general && (
