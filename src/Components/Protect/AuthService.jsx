@@ -11,7 +11,6 @@ try {
     localStorage.setItem("token",response.data.token);
   }
   return response;
-
 } catch (error) {
   throw new Error(error.response.data.message);
 }  

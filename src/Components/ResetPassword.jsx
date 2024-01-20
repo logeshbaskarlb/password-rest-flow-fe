@@ -8,13 +8,12 @@ import { setLoading, setShowPassword } from "../Components/Reducer/UserReducer";
 import { toast } from "react-toastify";
 import { EyeFill, EyeSlashFill } from "react-bootstrap-icons";
 import LoadingPage from "./LoadingPage";
-import "./Login.css"
-
+import "./Login.css";
 
 const ResetPassword = () => {
   const params = useParams();
   const navigate = useNavigate();
-  const { showPassword ,loading } = useSelector((state) => state.users);
+  const { showPassword, loading } = useSelector((state) => state.users);
   const dispatch = useDispatch();
   const formik = useFormik({
     initialValues: {
@@ -41,8 +40,8 @@ const ResetPassword = () => {
       try {
         dispatch(setLoading(true));
         const response = await axios.post(
-        `${config.userApi}/reset-password/${params.token}`,
-        values
+          `${config.userApi}/reset-password/${params.token}`,
+          values
         );
         console.log(response);
         navigate("/");
@@ -58,135 +57,107 @@ const ResetPassword = () => {
   });
 
   return (
-    <div className="main kvnkjabvav">
-        <div
-          className="login justify-content-center text-center"
-          style={{
-            width: "350px",
-            height: "500px",
-            overflow: "hidden",
-            borderRadius: "10px",
-            boxShadow: "5px 20px 50px #000",
-          }}
-        >
-          <form action="" onSubmit={formik.handleSubmit}>
-            <label
-              htmlFor="chk"
-              aria-hidden="true"
-              style={{
-                color: "#fff",
-                fontSize: "2.3em",
-                justifyContent: "center",
-                display: "flex",
-                fontWeight: "bold",
-                cursor: "pointer",
-              }}
-              className="text-white d-flex"
-            >
-              Reset Password
-            </label>
-            <div className="d-flex flex-column">
-              <p className="text-center text-white my-2">
-                Create a new password
-              </p>
-            </div>
-            <input
-              name="password"
-              style={{
-                width: "60%",
-                height: "35px",
-                background: "#e0dede",
-                justifyContent: "center",
-                display: "flex",
-                margin: "20px auto",
-                padding: "10px",
-                border: "none",
-                outline: "none",
-                borderRadius: "5px",
-              }}
-              placeholder="Password 🔑"
-              onChange={formik.handleChange}
-              value={formik.values.password}
-              onBlur={formik.handleBlur}
-              required
-            />{" "}
-              <div>
-              <div className="showPass">
-                {showPassword ? (
-                  <EyeSlashFill
-                    className="showPassIcon"
-                    onClick={() => {
-                      dispatch(setShowPassword(!showPassword));
-                    }}
-                  />
-                ) : (
-                  <EyeFill
-                    className="showPassIcon"
-                    onClick={() => {
-                      dispatch(setShowPassword(!showPassword));
-                    }}
-                  />
-                )}
-              </div>
-            </div>
-            <input
-              name="confirmPassword"
-              style={{
-                width: "60%",
-                height: "35px",
-                background: "#e0dede",
-                justifyContent: "center",
-                display: "flex",
-                margin: "20px auto",
-                padding: "10px",
-                border: "none",
-                outline: "none",
-                borderRadius: "5px",
-              }}
-              placeholder="confirmPassword 🔑"
-              onChange={formik.handleChange}
-              value={formik.values.confirmPassword}
-              onBlur={formik.handleBlur}
-              required
-            />{" "}
-            <div>
-              <div className="showPass">
-                {showPassword ? (
-                  <EyeSlashFill
-                    className="showPassIcon"
-                    onClick={() => {
-                      dispatch(setShowPassword(!showPassword));
-                    }}
-                  />
-                ) : (
-                  <EyeFill
-                    className="showPassIcon"
-                    onClick={() => {
-                      dispatch(setShowPassword(!showPassword));
-                    }}
-                  />
-                )}
-              </div>
-            </div>
-            {formik.errors.password ? (
-              <span className="d-block mx-5 my-2 text-start text-danger small invalid-feedback">
-                {formik.errors.password}
-              </span>
-            ) : null}
-            <button className="btn btn-dark btn-user btn-block" type="submit">
-            {
-                  loading ? <LoadingPage /> : 'Submit'
-                   }
-            </button>
-          </form>
-          
-          <p className="d-flex justify-content-center text-white">
-            <Link className="small a hover" to={"/"}>
-              Already have an account? Login!
-            </Link>
-          </p>
+    <div className="container d-flex justify-content-center align-items-center vh-100">
+      <div className="col-md-6 p-4 border rounded shadow">
+        <h2 className="text-center">Reset Password </h2>
+        <div className="d-flex flex-column">
+          <p className="text-center text-black my-2">Create a new password</p>
         </div>
+        <form action="" onSubmit={formik.handleSubmit}>
+          {formik.errors.general && (
+            <section className="alert alert-danger" role="alert">
+              {formik.errors.general.message}
+            </section>
+          )}
+          <input
+            name="password"
+            type={showPassword ? "text" : "password"}
+            className={`form-control form-control-user ${
+              formik.touched.password && formik.errors.password
+                ? "is-invalid"
+                : ""
+            }`}
+            placeholder="Password 🔑"
+            onChange={formik.handleChange}
+            value={formik.values.password}
+            onBlur={formik.handleBlur}
+            required
+          />{" "}
+          <div>
+            <div className="showPass">
+              {showPassword ? (
+                <EyeSlashFill
+                  className="showPassIcon"
+                  onClick={() => {
+                    dispatch(setShowPassword(!showPassword));
+                  }}
+                />
+              ) : (
+                <EyeFill
+                  className="showPassIcon"
+                  onClick={() => {
+                    dispatch(setShowPassword(!showPassword));
+                  }}
+                />
+              )}
+            </div>
+          </div>
+          {formik.touched.password && formik.errors.password && (
+            <span className="d-block ms-3 text-danger small invalid-feedback">
+              {formik.errors.password}
+            </span>
+          )}
+          <input
+            name="confirmPassword"
+            type={showPassword ? "text" : "password"}
+            className={`form-control form-control-user ${
+              formik.touched.confirmPassword && formik.errors.confirmPassword
+                ? "is-invalid"
+                : ""
+            }`}
+            placeholder="confirmPassword 🔑"
+            onChange={formik.handleChange}
+            value={formik.values.confirmPassword}
+            onBlur={formik.handleBlur}
+          />{" "}
+          <div>
+            <div className="showPass">
+              {showPassword ? (
+                <EyeSlashFill
+                  className="showPassIcon"
+                  onClick={() => {
+                    dispatch(setShowPassword(!showPassword));
+                  }}
+                />
+              ) : (
+                <EyeFill
+                  className="showPassIcon"
+                  onClick={() => {
+                    dispatch(setShowPassword(!showPassword));
+                  }}
+                />
+              )}
+            </div>
+          </div>
+          {formik.touched.confirmPassword && formik.errors.confirmPassword && (
+            <span className="d-block ms-3 text-danger small invalid-feedback">
+              {formik.errors.confirmPassword}
+            </span>
+          )}
+          <div className=" text-center m-3"> 
+          <button className="btn btn-dark btn-user btn-block text-center" type="submit">
+            {loading ? <LoadingPage /> : "Submit"}
+          </button>
+          </div>
+        </form>
+
+        <p className="d-flex justify-content-center p-3 text-white">
+          <Link className="text-decoration-none text-dark" to={"/"}>
+            Already have an account? Login!
+          </Link>
+        </p>
       </div>
+    </div>
   );
 };
 

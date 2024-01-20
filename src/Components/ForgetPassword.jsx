@@ -7,9 +7,8 @@ import { setLoading } from "./Reducer/UserReducer";
 import { toast } from "react-toastify";
 import LoadingPage from "./LoadingPage";
 import { config } from "./Config/Config";
-import "./Login.css"
+import "./Login.css";
 function ForgetPassword() {
-  
   const { loading } = useSelector((state) => state.users);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -32,10 +31,12 @@ function ForgetPassword() {
 
     onSubmit: async (values) => {
       try {
-      dispatch(setLoading(true))
+        dispatch(setLoading(true));
         const response = await axios.post(
-          `${config.userApi}/forgot-password`, values);
-        console.log(response)
+          `${config.userApi}/forgot-password`,
+          values
+        );
+        console.log(response);
         if (response.status === 200) {
           toast.success(response.data.message + "Kindly check your mail");
           navigate("/");
@@ -49,92 +50,60 @@ function ForgetPassword() {
         dispatch(setLoading(false));
       }
     },
-    
   });
   return (
-    <div
-      className="container  d-block justify-content-center"
-      style={{
-        width: "350px",
-        height: "500px",
-        overflow: "hidden",
-        borderRadius: "10px",
-        boxShadow: "5px 20px 50px #000",
-      }}
-    >
-      <main className="d-flex justify-content-center">
-        <form action="" onSubmit={formik.handleSubmit}>
-          {
-            formik.errors.general && (<section className="alert alert-danger" 
-            role="alert">
-            {formik.errors.general}
+    <div className="container d-flex justify-content-center align-items-center vh-100">
+      <div className="col-md-6 p-4 border rounded shadow">
+        <h2 className="mt-3 text-center"> Forgot password </h2>
+        <div className="d-flex flex-column w-full h-full">
+          <p className="text-center text-black my-2">Login to your account</p>
+        </div>
+        <div className="d-flex flex-column  w-full h-full">
+          <p className="text-center text-black my-0">
+            Here you can reset your password
+          </p>
+          <p className="text-center text-black my-2">
+            Please enter your mail Id
+          </p>
+        </div>
+        <form action="" className="user" onSubmit={formik.handleSubmit}>
+          {formik.errors.general && (
+            <section className="alert alert-danger" role="alert">
+              {formik.errors.general}
             </section>
-         )}
-          <label
-            htmlFor="chk"
-            aria-hidden="true"
-            className="p-3 d-flex justify-content-center text-center"
-            style={{
-              color: "#fff",
-              fontSize: "2.4em",
-              justifyContent: "center",
-              display: "flex",
-              fontWeight: "bold",
-              cursor: "pointer",
-              transition: ".5s ease-in-out",
-            }}
-          >
-            Forgot password
+          )}
+          <label htmlFor="exampleInputEmail1" className="form-label">
+            Email address :
           </label>
-          <div className="d-flex flex-column  w-full h-full">
-            <p className="text-center text-white my-2">
-              Here you can reset your password
-            </p>
-            <p className="text-center text-white my-2">
-              Please enter your mail Id
-            </p>
-          </div>
           <input
             type="email"
             name="email"
-            style={{
-              width: "100%",
-              height: "35px",
-              background: "#e0dede",
-              justifyContent: "center",
-              display: "flex",
-              margin: "5px auto",
-              padding: "10px",
-              border: "none",
-              outline: "none",
-              borderRadius: "5px",
-            }}
+            className={`form-control form-control-user ${
+              formik.touched.email && formik.errors.email ? "is-invalid" : ""
+            }`}
             placeholder="Email"
-            required=""
             onChange={formik.handleChange}
             value={formik.values.email}
             onBlur={formik.handleBlur}
           />
-          {formik.errors.email && formik.errors.email && 
-          (<span className="d-block ms-3 text-danger small invalid-feedback">
-            {formik.errors.email}
-          </span>)}
+          {formik.touched.email && formik.errors.email && (
+            <span className="d-block ms-3 text-danger small invalid-feedback">
+              {formik.errors.email}
+            </span>
+          )}
           <button
-            className="btn btn-primary btn-user btn-block mx-5 mt-3 d-flex justify-content-center"
+            className="btn btn-primary btn-user btn-block mx-5 mt-3 text-center"
             type="submit"
           >
             {loading ? <LoadingPage /> : "Reset Password"}
           </button>
         </form>
-      </main>
-      <hr />
-      <div className="">
-        <Link
-          to="/"
-          className="btn btn-dark m-2 d-flex justify-content-end btn-user btn-block"
-        >
-          Back To Login
-        </Link>
+        <hr />
+        <div className="d-flex justify-content-end">
+          <Link to="/" className="btn btn-dark m-2 text-end btn-user ">
+            Back To Login
+          </Link>
+        </div>
       </div>
     </div>
   );
