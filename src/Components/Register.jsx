@@ -46,39 +46,14 @@ function Register() {
           toast.success(response.data.message, {
             position: "top-center",
           });
-        } 
+        }
         navigate("/");
         formik.resetForm();
       } catch (error) {
-        console.error("Error during registration:", error);
-        if (error.response) {
-          // The request was made, but the server responded with an error status
-          console.error("Server responded with an error:", error.response.data);
-           // Display the server error message in the toast
-    const errorMessage =
-    error.response.data.message || "An error occurred on the server.";
-  toast.error(`Server error: ${errorMessage}`, {
-    position: "top-center",
-  });
-        } else if (error.request) {
-          // The request was made, but no response was received
-          console.error("No response received from the server");
-          return toast.error(
-            "No response received from the server. Please try again.",
-            {
-              position: "top-center",
-            }
-          );
-        } else {
-          // Something happened in setting up the request that triggered an error
-          console.error("Error setting up the request:", error.message);
-          return toast.error(
-            "Error setting up the request. Please try again.",
-            {
-              position: "top-center",
-            }
-          );
-        }
+        console.error("Error during registration:", error.response?.data || error.message);
+        toast.error("Error during registration. Please try again.", {
+      position: "top-center",
+    });
       } finally {
         dispatch(setLoading(false));
       }
@@ -86,13 +61,14 @@ function Register() {
   });
   return (
     <>
-      <div className="container d-flex justify-content-center align-items-center vh-100">
+      <div className="container d-flex justify-content-center align-items-center vh-100 kvnkjabvav">
         <div className="col-md-6 p-4 border rounded shadow">
           <h2 className="text-center">Sing up </h2>
           <div className="d-flex flex-column">
             <p className="text-center text-black my-2">Create a new acccount</p>
           </div>
-          <form action="" className="user" onSubmit={formik.handleSubmit}>
+          <form action="" className="user" 
+           onSubmit={formik.handleSubmit}>
             <div className="mb-3">
               <label htmlFor="exampleInputName" className="form-label">
                 Name :
@@ -180,12 +156,14 @@ function Register() {
                 {formik.errors.password}
               </span>
             )}
+            <div className="text-center d-flex justify-content-center">
             <button
               className="btn btn-dark btn-user btn-block d-flex justify-content-center"
               type="submit"
             >
               {loading ? <LoadingPage /> : " Register Account"}
-            </button>
+            </button> 
+            </div>
           </form>
           <div className="text-center mt-3 hover">
             <Link

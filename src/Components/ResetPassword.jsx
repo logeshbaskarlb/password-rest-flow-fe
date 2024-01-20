@@ -8,9 +8,9 @@ import { setLoading, setShowPassword } from "../Components/Reducer/UserReducer";
 import { toast } from "react-toastify";
 import { EyeFill, EyeSlashFill } from "react-bootstrap-icons";
 import LoadingPage from "./LoadingPage";
-import "./Login.css";
 
 const ResetPassword = () => {
+
   const params = useParams();
   const navigate = useNavigate();
   const { showPassword, loading } = useSelector((state) => state.users);
@@ -57,7 +57,7 @@ const ResetPassword = () => {
   });
 
   return (
-    <div className="container d-flex justify-content-center align-items-center vh-100">
+    <div className="container d-flex justify-content-center align-items-center vh-100 kvnkjabvav">
       <div className="col-md-6 p-4 border rounded shadow">
         <h2 className="text-center">Reset Password </h2>
         <div className="d-flex flex-column">
@@ -69,6 +69,10 @@ const ResetPassword = () => {
               {formik.errors.general.message}
             </section>
           )}
+           <div className="mb-3">
+          <label htmlFor="exampleInputEmail1" className="form-label">
+             Password : 
+            </label>
           <input
             name="password"
             type={showPassword ? "text" : "password"}
@@ -81,8 +85,8 @@ const ResetPassword = () => {
             onChange={formik.handleChange}
             value={formik.values.password}
             onBlur={formik.handleBlur}
-            required
           />{" "}
+          </div>
           <div>
             <div className="showPass">
               {showPassword ? (
@@ -107,19 +111,24 @@ const ResetPassword = () => {
               {formik.errors.password}
             </span>
           )}
+             <div className="mb-3">
+          <label htmlFor="exampleInputEmail1" className="form-label">
+            Confirm password : 
+            </label>
           <input
             name="confirmPassword"
             type={showPassword ? "text" : "password"}
             className={`form-control form-control-user ${
               formik.touched.confirmPassword && formik.errors.confirmPassword
-                ? "is-invalid"
-                : ""
+                ? ""
+                : "is-invalid"
             }`}
             placeholder="confirmPassword 🔑"
             onChange={formik.handleChange}
             value={formik.values.confirmPassword}
             onBlur={formik.handleBlur}
           />{" "}
+          </div>
           <div>
             <div className="showPass">
               {showPassword ? (

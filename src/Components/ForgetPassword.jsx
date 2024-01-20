@@ -92,7 +92,7 @@ function ForgetPassword() {
             </span>
           )}
           <button
-            className="btn btn-primary btn-user btn-block mx-5 mt-3 text-center"
+            className="btn btn-dark btn-user btn-block mx-5 mt-3 text-center"
             type="submit"
           >
             {loading ? <LoadingPage /> : "Reset Password"}
@@ -100,7 +100,7 @@ function ForgetPassword() {
         </form>
         <hr />
         <div className="d-flex justify-content-end">
-          <Link to="/" className="btn btn-dark m-2 text-end btn-user ">
+          <Link to="/" className=" m-2 p-2 text-end text-dark text-decoration-none ">
             Back To Login
           </Link>
         </div>

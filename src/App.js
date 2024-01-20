@@ -7,6 +7,8 @@ import "bootstrap";
 import ForgetPassword from './Components/ForgetPassword';
 import ResetPassword from './Components/ResetPassword';
 import Dashboard from './Components/Dashboard';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 // import { PrivateRoute } from './Components/Protect/ProtectedRoute';
 
 function App() {
@@ -23,6 +25,7 @@ function App() {
            <Route path='/dashboard' element={<Dashboard/>} />
       {/* </Route> */}
       </Routes>
+      <ToastContainer />
       </Router>
       </div>
     </>
