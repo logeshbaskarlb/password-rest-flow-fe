@@ -19,7 +19,7 @@ function Dashboard() {
 
             <section className="col-lg-12 p-5">
               <hgroup className="d-flex justify-content-center user-heading">
-                <h1 className="text-center  h1">ADUDU</h1>
+              
               </hgroup>
 
               <header className="text-center">
