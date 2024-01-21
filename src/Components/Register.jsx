@@ -41,7 +41,8 @@ function Register() {
     onSubmit: async (values) => {
       try {
         dispatch(setLoading(true));
-        const response = await axios.post(`${config.userApi}/register`, values);
+        const response = await axios.post(
+        `${config.userApi}/register`, values);
         if (response.status === 201) {
           toast.success(response.data.message, {
             position: "top-center",
@@ -50,10 +51,13 @@ function Register() {
         navigate("/");
         formik.resetForm();
       } catch (error) {
-        console.error("Error during registration:", error.response?.data || error.message);
-        toast.error("Error during registration. Please try again.", {
-      position: "top-center",
-    });
+        console.error("Error during registration:", error.message);
+  toast.error(
+    error.response
+      ? error.response.data.message || "Server error"
+      : "Network error. Please check your connection.",
+    { position: "top-center" }
+  );
       } finally {
         dispatch(setLoading(false));
       }
