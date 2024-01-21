@@ -20,7 +20,7 @@ function App() {
      <Route path='/' element={ <Login/>}></Route>
       <Route path='/register' element={<Register/>}/>
       <Route path='/forgot-password' element ={<ForgetPassword/> }/>
-      <Route path='reset-password/:token' element={<ResetPassword/>}/>
+      <Route path='/reset-password/:token' element={<ResetPassword/>}/>
       {/* <Route element={<PrivateRoute/>}> */}
            <Route path='/dashboard' element={<Dashboard/>} />
       {/* </Route> */}
