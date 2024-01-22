@@ -43,7 +43,7 @@ function Login() {
         toast.success('You are login in successfully')
       } catch (error) {
         formik.setErrors({ general: error.message });
-        toast.error('Something went wrong')
+        toast.error('Username or Password is incorrect')
       } finally {
         dispatch(setLoading(false));
       }
