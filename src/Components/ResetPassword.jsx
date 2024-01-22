@@ -13,7 +13,7 @@ const ResetPassword = () => {
 
   const params = useParams();
   const navigate = useNavigate();
-  const { showPassword, loading } = useSelector((state) => state.users);
+  const { showPassword, loading } = useSelector(state => state.users);
   const dispatch = useDispatch();
   const formik = useFormik({
     initialValues: {
